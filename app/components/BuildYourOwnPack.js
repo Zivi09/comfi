@@ -111,13 +111,19 @@ export default function BuildYourOwnPack({ products }) {
   };
 
   return (
-    <div className="bg-[#fae3e5] rounded-3xl p-8 border border-[#d0385c]/10 select-none shadow-xs">
+    <div className="bg-[#fae3e5] rounded-3xl p-5 sm:p-8 border border-[#d0385c]/10 select-none shadow-xs">
       {/* Title block */}
-      <div className="flex items-center gap-3 mb-6">
-        <Sparkles className="text-[#d0385c]" size={24} />
-        <h3 className="text-3xl font-serif font-black tracking-tighter text-[#d0385c]">
-          BUILD YOUR OWN PACK
-        </h3>
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <div className="flex items-center gap-3">
+          <Sparkles className="text-[#d0385c]" size={24} />
+          <h3 className="text-2xl sm:text-3xl font-serif font-black tracking-tighter text-[#d0385c]">
+            BUILD YOUR OWN PACK
+          </h3>
+        </div>
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-[#d0385c] text-white shadow-xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+          Coming Soon
+        </span>
       </div>
       <p className="text-sm text-[#3a3a3a]/80 mb-8 leading-relaxed max-w-xl">
         Mix and match sizes based on your flow cycle. Choose a minimum of 10 pads. Get a <span className="font-bold text-[#7e0022]">10% bundle discount</span> when you select 20 or more pads!
@@ -237,7 +243,7 @@ export default function BuildYourOwnPack({ products }) {
         <button
           onClick={handleAddBundle}
           disabled={totalPads < 10}
-          className={`px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg flex items-center gap-2 cursor-pointer ${
+          className={`w-full sm:w-auto px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg flex items-center justify-center gap-2 cursor-pointer ${
             totalPads < 10
               ? 'bg-[#d0385c]/10 text-[#d0385c]/30 cursor-not-allowed border border-[#d0385c]/10'
               : isAddedToCart
@@ -250,7 +256,7 @@ export default function BuildYourOwnPack({ products }) {
               <Check size={16} /> GO TO CART →
             </>
           ) : (
-            "Add Custom Bundle to Cart"
+            "Pre-order Custom Bundle"
           )}
         </button>
       </div>

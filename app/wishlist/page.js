@@ -13,10 +13,10 @@ import Link from 'next/link';
 import { Heart, ArrowLeft } from 'lucide-react';
 
 const FALLBACK_PRODUCTS = [
-  { id: "prod_regular_10", name: "Comfi Ultra Thin - Regular", size: "Regular", length: "240mm", packCount: 10, price: 199, description: "Ultra-thin regular pads with wide wings designed for active daytime comfort.", reviews: [], stock: 120 },
-  { id: "prod_large_10", name: "Comfi Ultra Thin - Large", size: "Large", length: "280mm", packCount: 10, price: 249, description: "Premium large ultra-thin pads offering high absorbency for medium to heavy flow days.", reviews: [], stock: 85 },
-  { id: "prod_xl_10", name: "Comfi Ultra Thin - XL", size: "XL", length: "320mm", packCount: 10, price: 299, description: "Extra-long pads optimized for heavy daytime or active protection.", reviews: [], stock: 60 },
-  { id: "prod_overnight_10", name: "Comfi Ultra Thin - Overnight", size: "Overnight", length: "360mm", packCount: 10, price: 349, description: "Specialized overnight pads with an extra-wide back to prevent leaks while sleeping.", reviews: [], stock: 45 }
+  { id: "prod_regular_10", name: "Comfi Ultra Thin - Regular", size: "Regular", length: "240mm", packCount: 10, price: 199, status: "Coming Soon", isComingSoon: true, description: "Ultra-thin regular pads with wide wings designed for active daytime comfort.", reviews: [], stock: 120 },
+  { id: "prod_large_10", name: "Comfi Ultra Thin - Large", size: "Large", length: "280mm", packCount: 10, price: 249, status: "Coming Soon", isComingSoon: true, description: "Premium large ultra-thin pads offering high absorbency for medium to heavy flow days.", reviews: [], stock: 85 },
+  { id: "prod_xl_10", name: "Comfi Ultra Thin - XL", size: "XL", length: "320mm", packCount: 10, price: 299, status: "Coming Soon", isComingSoon: true, description: "Extra-long pads optimized for heavy daytime or active protection.", reviews: [], stock: 60 },
+  { id: "prod_overnight_10", name: "Comfi Ultra Thin - Overnight", size: "Overnight", length: "360mm", packCount: 10, price: 349, status: "Coming Soon", isComingSoon: true, description: "Specialized overnight pads with an extra-wide back to prevent leaks while sleeping.", reviews: [], stock: 45 }
 ];
 
 export default function Wishlist() {
@@ -46,7 +46,7 @@ export default function Wishlist() {
   const wishlistedProducts = products.filter(product => wishlist.includes(product.id));
 
   return (
-    <div className="bg-[#fdf7e7] min-h-screen py-12 px-6 md:px-12 max-w-7xl mx-auto select-none">
+    <div className="bg-[#fdf7e7] min-h-screen py-8 sm:py-12 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto select-none">
       
       {/* Title block */}
       <ScrollReveal className="mb-12 border-b border-[#d0385c]/10 pb-8">

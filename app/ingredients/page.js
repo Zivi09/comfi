@@ -70,12 +70,12 @@ export default function IngredientsPage() {
   ];
 
   return (
-    <div className="bg-background-primary min-h-screen py-12 px-6 md:px-12 max-w-7xl mx-auto">
+    <div className="bg-background-primary min-h-screen py-8 sm:py-12 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto select-none">
       
       {/* Editorial Header */}
-      <ScrollReveal className="mb-16 border-b border-primaryText/5 pb-8 text-center md:text-left">
+      <ScrollReveal className="mb-12 sm:mb-16 border-b border-primaryText/5 pb-6 sm:pb-8 text-center md:text-left">
         <span className="utility-label text-accent font-black tracking-widest block mb-2">Materials & Transparency</span>
-        <h1 className="text-4xl md:text-6xl font-black heading-premium text-primaryText uppercase">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-black heading-premium text-primaryText uppercase">
           WHAT GOES INTO YOUR COMFI PAD
         </h1>
         <p className="text-sm md:text-base text-primaryText/70 max-w-2xl mt-4 leading-relaxed font-light">

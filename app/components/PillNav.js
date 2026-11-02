@@ -23,7 +23,7 @@ export default function PillNav({
 }) {
   const resolvedPillTextColor = pillTextColor ?? 'hsl(var(--foreground))';
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+
   const circleRefs = useRef([]);
   const tlRefs = useRef([]);
   const activeTweenRefs = useRef([]);
@@ -36,11 +36,11 @@ export default function PillNav({
   const renderLogo = () => {
     if (typeof logo === 'string' && (logo.includes('/') || logo.includes('.'))) {
       return (
-        <img 
-          src={logo} 
-          alt={logoAlt} 
-          ref={logoImgRef} 
-          className="w-10 h-10 object-contain pointer-events-none" 
+        <img
+          src={logo}
+          alt={logoAlt}
+          ref={logoImgRef}
+          className="w-10 h-10 object-contain pointer-events-none"
         />
       );
     }
@@ -55,11 +55,11 @@ export default function PillNav({
     const layout = () => {
       circleRefs.current.forEach((circle, index) => {
         if (!circle?.parentElement) return;
-        
+
         const pill = circle.parentElement;
         const rect = pill.getBoundingClientRect();
         const { width: w, height: h } = rect;
-        
+
         // Calculate the radius for the expanding circle to cover the pill
         const R = ((w * w) / 4 + h * h) / (2 * h);
         const D = Math.ceil(2 * R) + 2;
@@ -69,7 +69,7 @@ export default function PillNav({
         circle.style.width = `${D}px`;
         circle.style.height = `${D}px`;
         circle.style.bottom = `-${delta}px`;
-        
+
         gsap.set(circle, {
           xPercent: -50,
           scale: 0,
@@ -78,59 +78,59 @@ export default function PillNav({
 
         const label = pill.querySelector('.pill-label');
         const white = pill.querySelector('.pill-label-hover');
-        
+
         if (label) gsap.set(label, { y: 0 });
         if (white) gsap.set(white, { y: h + 12, opacity: 0 });
 
         tlRefs.current[index]?.kill();
         const tl = gsap.timeline({ paused: true });
-        
-        tl.to(circle, { 
-          scale: 1.2, 
-          xPercent: -50, 
-          duration: 0.8, 
-          ease, 
-          overwrite: 'auto' 
+
+        tl.to(circle, {
+          scale: 1.2,
+          xPercent: -50,
+          duration: 0.8,
+          ease,
+          overwrite: 'auto'
         }, 0);
-        
+
         if (label) {
-          tl.to(label, { 
-            y: -(h + 8), 
-            duration: 0.6, 
-            ease, 
-            overwrite: 'auto' 
+          tl.to(label, {
+            y: -(h + 8),
+            duration: 0.6,
+            ease,
+            overwrite: 'auto'
           }, 0);
         }
-        
+
         if (white) {
           gsap.set(white, { y: Math.ceil(h + 20), opacity: 0 });
-          tl.to(white, { 
-            y: 0, 
-            opacity: 1, 
-            duration: 0.6, 
-            ease, 
-            overwrite: 'auto' 
+          tl.to(white, {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease,
+            overwrite: 'auto'
           }, 0);
         }
-        
+
         tlRefs.current[index] = tl;
       });
     };
 
     layout();
-    
+
     const onResize = () => layout();
     window.addEventListener('resize', onResize);
-    
+
     if (document.fonts) {
-      document.fonts.ready.then(layout).catch(() => {});
+      document.fonts.ready.then(layout).catch(() => { });
     }
 
     // Initial load animation
     if (initialLoadAnimation) {
       const logoEl = logoRef.current;
       const navItemsEl = navItemsRef.current;
-      
+
       if (logoEl) {
         gsap.set(logoEl, { scale: 0, opacity: 0 });
         gsap.to(logoEl, {
@@ -140,7 +140,7 @@ export default function PillNav({
           ease: "back.out(1.7)"
         });
       }
-      
+
       if (navItemsEl) {
         const listItems = navItemsEl.querySelectorAll('li');
         gsap.set(listItems, { opacity: 0, x: -20 });
@@ -196,7 +196,7 @@ export default function PillNav({
   const toggleMobileMenu = () => {
     const newState = !isMobileMenuOpen;
     setIsMobileMenuOpen(newState);
-    
+
     const menu = mobileMenuRef.current;
     if (menu) {
       if (newState) {
@@ -222,6 +222,22 @@ export default function PillNav({
     if (onMobileMenuClick) onMobileMenuClick();
   };
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    const menu = mobileMenuRef.current;
+    if (menu) {
+      gsap.to(menu, {
+        opacity: 0,
+        y: -15,
+        duration: 0.25,
+        ease: "power3.in",
+        onComplete: () => {
+          gsap.set(menu, { display: 'none' });
+        }
+      });
+    }
+  };
+
   const isExternalLink = (href) =>
     href.startsWith('http://') ||
     href.startsWith('https://') ||
@@ -244,11 +260,11 @@ export default function PillNav({
   return (
     <div className={`relative z-[1000] w-full ${className}`} style={cssVars}>
       <nav
-        className="w-full flex items-center justify-between p-4 gap-4"
+        className="w-full flex items-center justify-between p-2 sm:p-4 gap-2 sm:gap-4"
         aria-label="Primary"
       >
         {/* Logo Section */}
-        <div 
+        <div
           ref={logoRef}
           onMouseEnter={handleLogoEnter}
           className="flex-shrink-0 z-10"
@@ -256,10 +272,8 @@ export default function PillNav({
           {items.length > 0 && !isExternalLink(items[0]?.href || '') ? (
             <Link
               href={'/'}
-              className="flex items-center justify-center rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-sm"
+              className="flex items-center justify-center rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-sm w-24 sm:w-28 h-[44px] sm:h-[var(--nav-h)] border border-black/5"
               style={{
-                width: '120px',
-                height: 'var(--nav-h)',
                 background: 'var(--base)',
                 color: 'var(--hover-text)'
               }}
@@ -269,10 +283,8 @@ export default function PillNav({
           ) : (
             <a
               href={'/'}
-              className="flex items-center justify-center rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-sm"
+              className="flex items-center justify-center rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-sm w-24 sm:w-28 h-[44px] sm:h-[var(--nav-h)] border border-black/5"
               style={{
-                width: '120px',
-                height: 'var(--nav-h)',
                 background: 'var(--base)',
                 color: 'var(--hover-text)'
               }}
@@ -298,7 +310,7 @@ export default function PillNav({
           >
             {items.map((item, i) => {
               const isActive = activeHref === item.href;
-              
+
               const pillStyle = {
                 background: 'var(--pill-bg)',
                 color: 'var(--pill-text)',
@@ -383,23 +395,23 @@ export default function PillNav({
         </div>
 
         {/* Right side actions and Mobile Hamburger */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {extraActions && (
-             <div className="flex items-center rounded-full px-4 h-[var(--nav-h)] bg-[var(--base)] shadow-sm border border-black/5 gap-4 mr-2">
-                {extraActions}
-             </div>
+            <div className="flex items-center rounded-full px-2.5 sm:px-4 h-[44px] sm:h-[var(--nav-h)] bg-[var(--base)] shadow-sm border border-black/5 gap-2 sm:gap-4 mr-0.5 sm:mr-2">
+              {extraActions}
+            </div>
           )}
-          
+
           <button
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
-            className="md:hidden flex items-center justify-center rounded-full transition-transform active:scale-90"
+            className="md:hidden flex items-center justify-center rounded-full transition-transform active:scale-90 border border-[#d0385c]/15 shadow-2xs cursor-pointer"
             style={{
-              width: 'var(--nav-h)',
-              height: 'var(--nav-h)',
+              width: '44px',
+              height: '44px',
               background: 'var(--base)',
-              color: 'var(--pill-bg)'
+              color: 'var(--hover-text)'
             }}
           >
             {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -410,7 +422,7 @@ export default function PillNav({
       {/* Mobile Menu Dropdown */}
       <div
         ref={mobileMenuRef}
-        className="md:hidden absolute top-full left-4 right-4 mt-2 rounded-2xl overflow-hidden shadow-2xl z-[999] hidden border border-black/10"
+        className="md:hidden absolute top-full left-3 right-3 mt-1 rounded-2xl overflow-hidden shadow-2xl z-[999] hidden border border-[#d0385c]/15 backdrop-blur-md"
         style={{
           background: 'var(--base)'
         }}
@@ -423,24 +435,24 @@ export default function PillNav({
                 {!isExternalLink(item.href) ? (
                   <Link
                     href={item.href}
-                    className={`block py-4 px-6 text-xs font-bold uppercase tracking-[0.2em] rounded-xl transition-all ${
-                      isActive 
-                        ? 'bg-black/10 text-[var(--pill-bg)]' 
-                        : 'text-[var(--pill-bg)]/70 hover:bg-black/20 hover:text-[var(--pill-bg)]'
+                    className={`block py-3.5 px-5 text-xs font-bold uppercase tracking-[0.2em] rounded-xl transition-all ${
+                      isActive
+                        ? 'bg-[#d0385c]/10 text-[#d0385c]'
+                        : 'text-[#3a3a3a] hover:bg-[#d0385c]/5 hover:text-[#d0385c]'
                     }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={closeMobileMenu}
                   >
                     {item.label}
                   </Link>
                 ) : (
                   <a
                     href={item.href}
-                    className={`block py-4 px-6 text-xs font-bold uppercase tracking-[0.2em] rounded-xl transition-all ${
-                      isActive 
-                        ? 'bg-black/10 text-[var(--pill-bg)]' 
-                        : 'text-[var(--pill-bg)]/70 hover:bg-black/20 hover:text-[var(--pill-bg)]'
+                    className={`block py-3.5 px-5 text-xs font-bold uppercase tracking-[0.2em] rounded-xl transition-all ${
+                      isActive
+                        ? 'bg-[#d0385c]/10 text-[#d0385c]'
+                        : 'text-[#3a3a3a] hover:bg-[#d0385c]/5 hover:text-[#d0385c]'
                     }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={closeMobileMenu}
                   >
                     {item.label}
                   </a>

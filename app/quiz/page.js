@@ -194,12 +194,12 @@ export default function Quiz() {
   };
 
   return (
-    <div className="bg-[#fdf7e7] min-h-[85vh] py-12 px-6 md:px-12 flex items-center justify-center select-none">
+    <div className="bg-[#fdf7e7] min-h-[85vh] py-8 sm:py-12 px-4 sm:px-6 md:px-12 flex items-center justify-center select-none">
       <div className="max-w-xl w-full">
         
         {!result ? (
           /* Quiz Questionnaire UI (mint sage background card) */
-          <div className="bg-[#fae3e5] rounded-3xl p-8 border border-[#d0385c]/10 relative overflow-hidden shadow-xs">
+          <div className="bg-[#fae3e5] rounded-3xl p-5 sm:p-8 border border-[#d0385c]/10 relative overflow-hidden shadow-xs">
             
             {/* Progress indicators */}
             <div className="flex gap-2 mb-6">
@@ -258,7 +258,7 @@ export default function Quiz() {
           </div>
         ) : (
           /* Recommendation Screen (mint sage card background) */
-          <ScrollReveal className="bg-[#fae3e5] rounded-3xl p-8 border border-[#d0385c]/15 text-center relative overflow-hidden shadow-xs">
+          <ScrollReveal className="bg-[#fae3e5] rounded-3xl p-5 sm:p-8 border border-[#d0385c]/15 text-center relative overflow-hidden shadow-xs">
             
             {/* Sparkles Celebration */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">

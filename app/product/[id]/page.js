@@ -7,7 +7,7 @@ import { useApp } from '../../context/AppContext';
 import ScrollReveal from '../../components/ScrollReveal';
 import FloatingBadge from '../../components/FloatingBadge';
 import { PadIllustration } from '../../components/ProductCard';
-import { Star, ShieldCheck, Heart, Leaf, HelpCircle, ShoppingCart, Check } from 'lucide-react';
+import { Star, ShieldCheck, Heart, Leaf, HelpCircle, ShoppingCart, Check, Sparkles } from 'lucide-react';
 import HeartToggle from '../../components/HeartToggle';
 
 const FALLBACK_PRODUCTS = [
@@ -19,6 +19,8 @@ const FALLBACK_PRODUCTS = [
     packCount: 10,
     price: 199,
     stock: 120,
+    status: "Coming Soon",
+    isComingSoon: true,
     description: "Ultra-thin regular pads with wide wings designed for active daytime comfort. Features an irritation-free cotton feel, quick absorption lock layer, and leak-proof barriers.",
     features: [
       "Breathable top layer for zero irritation",
@@ -39,6 +41,8 @@ const FALLBACK_PRODUCTS = [
     packCount: 10,
     price: 249,
     stock: 85,
+    status: "Coming Soon",
+    isComingSoon: true,
     description: "Premium large ultra-thin pads offering high absorbency for medium to heavy flow days. Skin-friendly, extra flexible, and features advanced rash-protection technology Tester.",
     features: [
       "Ultra-absorbent gel core",
@@ -58,6 +62,8 @@ const FALLBACK_PRODUCTS = [
     packCount: 10,
     price: 299,
     stock: 60,
+    status: "Coming Soon",
+    isComingSoon: true,
     description: "Extra-long pads optimized for heavy daytime or active protection. Maximized surface coverage with zero bulkiness, enabling free movement without leakage fearsTester.",
     features: [
       "320mm extra protection coverage",
@@ -77,6 +83,8 @@ const FALLBACK_PRODUCTS = [
     packCount: 10,
     price: 349,
     stock: 45,
+    status: "Coming Soon",
+    isComingSoon: true,
     description: "Specialized overnight pads with an extra-wide back to prevent leaks while sleeping. Delivers up to 12-hour protection, remaining completely breathable Tester.",
     features: [
       "360mm night safety length",
@@ -105,6 +113,38 @@ export default function ProductDetail({ params }) {
   // 30-Second Dynamic Added to Cart State
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const addedTimerRef = useRef(null);
+
+  // VIP Launch Waitlist State
+  const [isWaitlistJoined, setIsWaitlistJoined] = useState(false);
+  const [waitlistEmail, setWaitlistEmail] = useState("");
+  const [showEmailInput, setShowEmailInput] = useState(false);
+
+  const handleNotifyMe = (e) => {
+    if (e) e.preventDefault();
+    if (user?.email) {
+      setIsWaitlistJoined(true);
+      if (showToast) {
+        showToast(`You're on the VIP launch list! We'll email ${user.email} on launch day.`, "🚀 VIP Access Confirmed");
+      } else {
+        alert(`You're on the VIP launch list! We'll email ${user.email} on launch day.`);
+      }
+      return;
+    }
+    if (!showEmailInput) {
+      setShowEmailInput(true);
+      return;
+    }
+    if (!waitlistEmail.trim() || !waitlistEmail.includes('@')) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    setIsWaitlistJoined(true);
+    if (showToast) {
+      showToast(`You're on the VIP launch list! We'll email ${waitlistEmail} on launch day.`, "🚀 VIP Access Confirmed");
+    } else {
+      alert(`You're on the VIP launch list! We'll email ${waitlistEmail} on launch day.`);
+    }
+  };
 
   // Review states
   const [reviewRating, setReviewRating] = useState(5);
@@ -239,32 +279,45 @@ export default function ProductDetail({ params }) {
     : "5.0";
 
   return (
-    <div className="bg-background-primary min-h-screen py-12 px-6 md:px-12 max-w-7xl mx-auto relative">
+    <div className="bg-background-primary min-h-screen py-8 sm:py-12 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto relative select-none">
       
       {/* Back button */}
-      <Link href="/shop" className="utility-label text-primaryText/50 hover:text-accent font-black mb-8 inline-block">
+      <Link href="/shop" className="utility-label text-primaryText/50 hover:text-accent font-black mb-6 sm:mb-8 inline-block transition-colors">
         ← BACK TO SHOP
       </Link>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start">
         
-        {/* Left Side: Product Illustration & Floating Badge */}
+        {/* Left Side: Product Illustration & Coming Soon Badge */}
         <div className="relative">
+          {/* Coming Soon Corner Badge */}
+          <div className="absolute top-4 left-4 z-20">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-widest bg-[#d0385c] text-white shadow-md border border-white/30 backdrop-blur-xs">
+              <Sparkles size={13} /> COMING SOON
+            </span>
+          </div>
+
           <PadIllustration size={product.size} length={product.length} className="w-full aspect-[4/5]" />
           
           {/* 160px Floating Badge with 4s bounce */}
           <div className="absolute -bottom-8 -right-8 z-10 hidden sm:block">
-            <FloatingBadge text="RASH FREE" subtext="DERMA TESTED" />
+            <FloatingBadge text="COMING SOON" subtext="DERMA TESTED" />
           </div>
         </div>
 
         {/* Right Side: Product Details */}
         <div>
           <ScrollReveal>
-            <div className="flex items-center justify-between mb-4 border-b border-primaryText/5 pb-4">
-              <span className="utility-label text-accent font-black tracking-widest">
-                ULTRA THIN SPECIALIST
-              </span>
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-4 border-b border-primaryText/5 pb-4">
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-[#d0385c] text-white shadow-xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  COMING SOON
+                </span>
+                <span className="utility-label text-accent font-black tracking-widest hidden sm:inline">
+                  ULTRA THIN SPECIALIST
+                </span>
+              </div>
               <div className="flex items-center gap-1 text-primaryText">
                 <Star size={16} fill="currentColor" className="text-primaryText" />
                 <span className="text-sm font-black">{avgRating} ({product.reviews?.length || 0} reviews)</span>
@@ -272,7 +325,7 @@ export default function ProductDetail({ params }) {
             </div>
 
             <div className="flex justify-between items-start mb-4">
-              <h1 className="text-4xl sm:text-5xl font-black heading-premium text-primaryText leading-none mr-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black heading-premium text-primaryText leading-tight mr-4">
                 {product.name}
               </h1>
               <HeartToggle 
@@ -290,6 +343,17 @@ export default function ProductDetail({ params }) {
                 size="large"
               />
             </div>
+
+            {/* VIP Pre-Launch Banner */}
+            <div className="bg-[#fae3e5] border border-[#d0385c]/15 rounded-2xl p-4 mb-6 flex items-start gap-3 shadow-2xs">
+              <Sparkles size={18} className="text-[#d0385c] mt-0.5 flex-shrink-0" />
+              <div className="text-xs text-[#3a3a3a] leading-relaxed">
+                <span className="font-bold text-[#d0385c] block mb-0.5 uppercase tracking-wide">
+                  Official Launch Approaching
+                </span>
+                This product is currently in final production with certified 100% organic cotton. Join the VIP launch list to be notified first and receive an exclusive 15% launch privilege!
+              </div>
+            </div>
             
             <p className="text-sm text-primaryText/70 leading-relaxed font-light mb-8 max-w-lg">
               {product.description}
@@ -298,19 +362,19 @@ export default function ProductDetail({ params }) {
             {/* Pack Size Selector */}
             <div className="mb-8">
               <span className="utility-label text-primaryText/40 mb-3 block">Select Pack Size:</span>
-              <div className="flex gap-4">
+              <div className="flex gap-3 sm:gap-4">
                 {[10, 20].map(count => (
                   <button
                     key={count}
                     onClick={() => setPackOption(count)}
-                    className={`flex-1 py-4 border rounded-xl text-center transition-all duration-300 font-bold ${
+                    className={`flex-1 py-3.5 sm:py-4 px-2 border rounded-xl text-center transition-all duration-300 font-bold ${
                       packOption === count 
                         ? 'border-accent bg-accent/10 text-primaryText' 
                         : 'border-primaryText/10 bg-background-secondary text-primaryText/60 hover:border-primaryText/25'
                     }`}
                   >
-                    <div className="text-lg font-black">{count} Packs</div>
-                    <div className="text-xs font-light text-primaryText/60 mt-1">
+                    <div className="text-base sm:text-lg font-black">{count} Packs</div>
+                    <div className="text-[11px] sm:text-xs font-light text-primaryText/60 mt-1">
                       {count === 10 ? `₹${product.price} (₹${(product.price/10).toFixed(1)}/pad)` : `₹${Math.round((product.price*2)*0.9)} (₹${((product.price*2*0.9)/20).toFixed(1)}/pad)`}
                     </div>
                   </button>
@@ -318,36 +382,52 @@ export default function ProductDetail({ params }) {
               </div>
             </div>
 
-            {/* Price & Action */}
-            <div className="flex items-center justify-between py-6 border-t border-b border-primaryText/5 mb-8">
-              <div>
-                <span className="utility-label text-primaryText/40">Total Price</span>
-                <div className="text-4xl font-black text-primaryText mt-1">₹{currentPrice}</div>
+            {/* Price & Action Row (Responsive Stack on Phone) */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-5 py-6 border-t border-b border-primaryText/5 mb-8">
+              <div className="text-center sm:text-left">
+                <span className="utility-label text-primaryText/40">Expected Price</span>
+                <div className="text-3xl sm:text-4xl font-black text-primaryText mt-0.5">₹{currentPrice}</div>
               </div>
               
-              <button
-                onClick={handleAddToCart}
-                disabled={product.stock <= 0}
-                className={`px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 hover:scale-105 active:scale-95 shadow-md flex items-center gap-2 cursor-pointer ${
-                  product.stock <= 0
-                    ? 'bg-primaryText/10 text-primaryText/40 cursor-not-allowed'
-                    : isAddedToCart
-                    ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                    : 'bg-[#d0385c] hover:bg-[#5c0018] text-white'
-                }`}
-              >
-                {product.stock <= 0 ? (
-                  "Out of Stock"
-                ) : isAddedToCart ? (
-                  <>
-                    <Check size={16} /> GO TO CART →
-                  </>
+              <div className="flex flex-col gap-2 w-full sm:w-auto">
+                {isWaitlistJoined ? (
+                  <div className="bg-emerald-100 text-emerald-800 border border-emerald-300 px-6 py-3.5 rounded-full font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-xs">
+                    <Check size={16} /> VIP Waitlist Joined
+                  </div>
+                ) : showEmailInput && !user ? (
+                  <form onSubmit={handleNotifyMe} className="flex flex-col sm:flex-row gap-2 w-full">
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      value={waitlistEmail}
+                      onChange={(e) => setWaitlistEmail(e.target.value)}
+                      className="px-4 py-3 rounded-full text-xs border border-[#d0385c]/30 bg-white focus:outline-none focus:border-[#d0385c] text-[#3a3a3a]"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      className="bg-[#d0385c] hover:bg-[#5c0018] text-white px-6 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
+                    >
+                      Notify Me
+                    </button>
+                  </form>
                 ) : (
-                  <>
-                    <ShoppingCart size={16} /> Add to Cart
-                  </>
+                  <button
+                    onClick={handleNotifyMe}
+                    className="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 hover:scale-105 active:scale-95 shadow-md flex items-center justify-center gap-2 cursor-pointer bg-[#d0385c] hover:bg-[#5c0018] text-white"
+                  >
+                    <Sparkles size={16} /> Notify Me When Available
+                  </button>
                 )}
-              </button>
+
+                {/* Pre-order Option for Testing & Advance Purchase */}
+                <button
+                  onClick={handleAddToCart}
+                  className="text-center text-[11px] font-bold text-[#d0385c]/80 hover:text-[#d0385c] underline py-1 transition-colors cursor-pointer"
+                >
+                  {isAddedToCart ? "✓ Pre-order Bag Updated → View Cart" : "Or Pre-order (Add to Bag) →"}
+                </button>
+              </div>
             </div>
 
             {/* Comfort/Material Claims */}

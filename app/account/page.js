@@ -508,7 +508,7 @@ export default function Account() {
   ];
 
   return (
-    <div className="bg-[#fdf7e7] min-h-screen pt-20 pb-12 px-4 md:px-8 w-full max-w-[1600px] mx-auto font-sans">
+    <div className="bg-[#fdf7e7] min-h-screen pt-4 sm:pt-8 pb-12 px-4 md:px-8 w-full max-w-[1600px] mx-auto font-sans">
       
       {!token ? (
         /* Login / Signup Modal Card */

@@ -10,12 +10,13 @@ import { useApp } from '../context/AppContext';
 import ScrollReveal from '../components/ScrollReveal';
 import ProductCard from '../components/ProductCard';
 import BuildYourOwnPack from '../components/BuildYourOwnPack';
+import { Sparkles, SlidersHorizontal, ChevronDown, ChevronUp } from 'lucide-react';
 
 const FALLBACK_PRODUCTS = [
-  { id: "prod_regular_10", name: "Comfi Ultra Thin - Regular", size: "Regular", length: "240mm", packCount: 10, price: 199, description: "Ultra-thin regular pads with wide wings designed for active daytime comfort.", reviews: [], stock: 120 },
-  { id: "prod_large_10", name: "Comfi Ultra Thin - Large", size: "Large", length: "280mm", packCount: 10, price: 249, description: "Premium large ultra-thin pads offering high absorbency for medium to heavy flow days.", reviews: [], stock: 85 },
-  { id: "prod_xl_10", name: "Comfi Ultra Thin - XL", size: "XL", length: "320mm", packCount: 10, price: 299, description: "Extra-long pads optimized for heavy daytime or active protection.", reviews: [], stock: 60 },
-  { id: "prod_overnight_10", name: "Comfi Ultra Thin - Overnight", size: "Overnight", length: "360mm", packCount: 10, price: 349, description: "Specialized overnight pads with an extra-wide back to prevent leaks while sleeping.", reviews: [], stock: 45 }
+  { id: "prod_regular_10", name: "Comfi Ultra Thin - Regular", size: "Regular", length: "240mm", packCount: 10, price: 199, status: "Coming Soon", isComingSoon: true, description: "Ultra-thin regular pads with wide wings designed for active daytime comfort.", reviews: [], stock: 120 },
+  { id: "prod_large_10", name: "Comfi Ultra Thin - Large", size: "Large", length: "280mm", packCount: 10, price: 249, status: "Coming Soon", isComingSoon: true, description: "Premium large ultra-thin pads offering high absorbency for medium to heavy flow days.", reviews: [], stock: 85 },
+  { id: "prod_xl_10", name: "Comfi Ultra Thin - XL", size: "XL", length: "320mm", packCount: 10, price: 299, status: "Coming Soon", isComingSoon: true, description: "Extra-long pads optimized for heavy daytime or active protection.", reviews: [], stock: 60 },
+  { id: "prod_overnight_10", name: "Comfi Ultra Thin - Overnight", size: "Overnight", length: "360mm", packCount: 10, price: 349, status: "Coming Soon", isComingSoon: true, description: "Specialized overnight pads with an extra-wide back to prevent leaks while sleeping.", reviews: [], stock: 45 }
 ];
 
 export default function Shop() {
@@ -23,6 +24,7 @@ export default function Shop() {
   const [products, setProducts] = useState(FALLBACK_PRODUCTS);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedPacks, setSelectedPacks] = useState([]);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -65,32 +67,51 @@ export default function Shop() {
   });
 
   return (
-    <div className="bg-[#fdf7e7] min-h-screen py-12 px-6 md:px-12 max-w-7xl mx-auto select-none">
+    <div className="bg-[#fdf7e7] min-h-screen py-8 sm:py-12 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto select-none">
       
       {/* Editorial Title */}
-      <ScrollReveal className="mb-12 border-b border-[#d0385c]/10 pb-8">
-        <span className="text-[10px] font-bold tracking-[0.25em] text-[#7e0022] uppercase block mb-2">COMFI STOREFRONT</span>
-        <h1 className="text-4xl md:text-5xl font-serif font-black text-[#d0385c] uppercase tracking-tighter">
+      <ScrollReveal className="mb-10 sm:mb-12 border-b border-[#d0385c]/10 pb-6 sm:pb-8">
+        <div className="inline-flex items-center gap-2 bg-[#fae3e5] border border-[#d0385c]/20 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#d0385c] mb-3">
+          <Sparkles size={14} className="text-[#d0385c]" />
+          <span>PREMIER COLLECTION • ALL PRODUCTS COMING SOON</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-[#d0385c] uppercase tracking-tighter">
           Select Your Protection
         </h1>
-        <p className="text-sm text-[#3a3a3a]/75 max-w-xl mt-4 leading-relaxed font-light font-sans">
-          Ultra-thin sanitary pads manufactured under the highest standards of safety. Choose a pre-seeded size or custom mix your pack below.
+        <p className="text-xs sm:text-sm text-[#3a3a3a]/75 max-w-xl mt-3 sm:mt-4 leading-relaxed font-light font-sans">
+          Ultra-thin sanitary pads manufactured under the highest standards of safety. Every size is engineered with 100% organic cotton. Browse our upcoming lineup or configure a custom mix below.
         </p>
       </ScrollReveal>
 
+      {/* Mobile Filters Toggle Button */}
+      <div className="lg:hidden mb-6">
+        <button
+          onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
+          className="w-full flex items-center justify-between bg-white/80 border border-[#d0385c]/15 rounded-2xl px-5 py-3.5 text-sm font-bold text-[#d0385c] shadow-2xs hover:bg-white transition-all cursor-pointer"
+        >
+          <span className="flex items-center gap-2">
+            <SlidersHorizontal size={16} />
+            Filters {(selectedSizes.length + selectedPacks.length) > 0 ? `(${selectedSizes.length + selectedPacks.length} active)` : ''}
+          </span>
+          <span className="text-xs uppercase tracking-wider font-extrabold flex items-center gap-1">
+            {mobileFiltersOpen ? <>Hide <ChevronUp size={14} /></> : <>Show <ChevronDown size={14} /></>}
+          </span>
+        </button>
+      </div>
+
       {/* Main Layout: Sidebar + Grid */}
-      <div className="flex flex-col lg:flex-row gap-12 mb-24">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 mb-20 sm:mb-24">
         
         {/* Left Sidebar Filters */}
-        <div className="w-full lg:w-64 flex-shrink-0">
-          <div className="bg-white/50 border border-[#d0385c]/10 rounded-2xl p-6 shadow-sm sticky top-24">
+        <div className={`w-full lg:w-64 flex-shrink-0 ${mobileFiltersOpen ? 'block' : 'hidden lg:block'}`}>
+          <div className="bg-white/60 border border-[#d0385c]/10 rounded-2xl p-6 shadow-sm sticky top-24">
             
-            <div className="flex items-center justify-between mb-8 border-b border-[#d0385c]/10 pb-4">
+            <div className="flex items-center justify-between mb-6 sm:mb-8 border-b border-[#d0385c]/10 pb-4">
               <h3 className="font-serif font-black text-[#d0385c] tracking-tight text-xl">Filters</h3>
               {(selectedSizes.length > 0 || selectedPacks.length > 0) && (
                 <button 
                   onClick={handleClearAll}
-                  className="text-xs font-bold text-[#3a3a3a]/50 hover:text-[#d0385c] uppercase tracking-wider transition-colors"
+                  className="text-xs font-bold text-[#3a3a3a]/50 hover:text-[#d0385c] uppercase tracking-wider transition-colors cursor-pointer"
                 >
                   Clear All
                 </button>
@@ -98,8 +119,8 @@ export default function Shop() {
             </div>
 
             {/* Size Filters */}
-            <div className="mb-8">
-              <span className="text-[10px] font-bold tracking-[0.15em] text-[#3a3a3a]/50 mb-4 block uppercase">Size</span>
+            <div className="mb-6 sm:mb-8">
+              <span className="text-[10px] font-bold tracking-[0.15em] text-[#3a3a3a]/50 mb-3 sm:mb-4 block uppercase">Size</span>
               <div className="flex flex-col gap-3">
                 {['Regular', 'Large', 'XL', 'Overnight'].map(size => (
                   <label key={size} className="flex items-center gap-3 cursor-pointer group">
@@ -118,7 +139,7 @@ export default function Shop() {
 
             {/* Pack Count Filters */}
             <div>
-              <span className="text-[10px] font-bold tracking-[0.15em] text-[#3a3a3a]/50 mb-4 block uppercase">Pack Count</span>
+              <span className="text-[10px] font-bold tracking-[0.15em] text-[#3a3a3a]/50 mb-3 sm:mb-4 block uppercase">Pack Count</span>
               <div className="flex flex-col gap-3">
                 {['10', '20'].map(count => (
                   <label key={count} className="flex items-center gap-3 cursor-pointer group">
@@ -140,7 +161,7 @@ export default function Shop() {
 
         {/* Product Catalog Grid */}
         <div className="flex-1">
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
             {filteredProducts.length > 0 ? (
               filteredProducts.map(product => (
                 <ScrollReveal key={product.id}>
@@ -148,7 +169,7 @@ export default function Shop() {
                 </ScrollReveal>
               ))
             ) : (
-              <div className="col-span-full py-24 text-center text-[#3a3a3a]/50 font-light font-sans bg-white/30 rounded-2xl border border-[#d0385c]/10">
+              <div className="col-span-full py-20 text-center text-[#3a3a3a]/50 font-light font-sans bg-white/30 rounded-2xl border border-[#d0385c]/10">
                 No products found matching the selected filters.
               </div>
             )}

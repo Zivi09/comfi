@@ -153,12 +153,20 @@ export default function ProductCard({ product }) {
         id={id} 
         checked={isInWishlist(id)} 
         onChange={handleWishlistChange} 
-        className="absolute top-8 left-8 z-30 pointer-events-auto" 
+        className="absolute top-4 left-4 sm:top-5 sm:left-5 z-30 pointer-events-auto" 
       />
+      
+      {/* Coming Soon Pill Badge */}
+      <div className="absolute top-4 right-4 sm:top-5 sm:right-5 z-20 pointer-events-none">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-wider bg-[#d0385c] text-white shadow-xs border border-white/30 backdrop-blur-xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+          Coming Soon
+        </span>
+      </div>
       
       <Link 
         href={`/product/${id}`}
-        className={`group block ${getFlavorBgColor(size)} rounded-2xl p-6 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] select-none cursor-pointer border-0 shadow-none hover:scale-[1.02]`}
+        className={`group block ${getFlavorBgColor(size)} rounded-2xl p-5 sm:p-6 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] select-none cursor-pointer border-0 shadow-none hover:scale-[1.02]`}
       >
         {/* Product Image Crop (white circle) */}
         <div className="w-full aspect-square mb-6">
@@ -188,13 +196,18 @@ export default function ProductCard({ product }) {
             {packCount} Pack • {length}
           </span>
 
-          {/* Bottom Row - Price & Shop Button */}
+          {/* Bottom Row - Price & Coming Soon Action */}
           <div className="flex justify-between items-center w-full mt-4 pt-4 border-t border-[#d0385c]/10">
-            <span className="text-lg font-black text-[#d0385c]">
-              ₹{price}
-            </span>
-            <span className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest text-[#d0385c] bg-white px-4 py-2 rounded-full group-hover:bg-[#d0385c]/10 transition-colors duration-300 shadow-2xs">
-              Shop <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform duration-300" />
+            <div className="flex flex-col text-left">
+              <span className="text-lg font-black text-[#d0385c] leading-tight">
+                ₹{price}
+              </span>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[#7e0022]/75">
+                Launching Soon
+              </span>
+            </div>
+            <span className="flex items-center gap-1 text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-[#d0385c] bg-white px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full group-hover:bg-[#d0385c] group-hover:text-white transition-all duration-300 shadow-2xs">
+              Coming Soon <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform duration-300" />
             </span>
           </div>
         </div>

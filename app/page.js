@@ -14,10 +14,10 @@ import FAQ from './components/FAQ';
 import { ArrowRight, ShieldCheck, Heart, Wind, Star, Sparkles, CheckCircle2, SlidersHorizontal } from 'lucide-react';
 
 const FALLBACK_PRODUCTS = [
-  { id: "prod_regular_10", name: "Comfi Ultra Thin - Regular", size: "Regular", length: "240mm", packCount: 10, price: 199, description: "Ultra-thin regular pads with wide wings designed for active daytime comfort.", reviews: [] },
-  { id: "prod_large_10", name: "Comfi Ultra Thin - Large", size: "Large", length: "280mm", packCount: 10, price: 249, description: "Premium large ultra-thin pads offering high absorbency for medium to heavy flow days.", reviews: [] },
-  { id: "prod_xl_10", name: "Comfi Ultra Thin - XL", size: "XL", length: "320mm", packCount: 10, price: 299, description: "Extra-long pads optimized for heavy daytime or active protection.", reviews: [] },
-  { id: "prod_overnight_10", name: "Comfi Ultra Thin - Overnight", size: "Overnight", length: "360mm", packCount: 10, price: 349, description: "Specialized overnight pads with an extra-wide back to prevent leaks while sleeping.", reviews: [] }
+  { id: "prod_regular_10", name: "Comfi Ultra Thin - Regular", size: "Regular", length: "240mm", packCount: 10, price: 199, status: "Coming Soon", isComingSoon: true, description: "Ultra-thin regular pads with wide wings designed for active daytime comfort.", reviews: [] },
+  { id: "prod_large_10", name: "Comfi Ultra Thin - Large", size: "Large", length: "280mm", packCount: 10, price: 249, status: "Coming Soon", isComingSoon: true, description: "Premium large ultra-thin pads offering high absorbency for medium to heavy flow days.", reviews: [] },
+  { id: "prod_xl_10", name: "Comfi Ultra Thin - XL", size: "XL", length: "320mm", packCount: 10, price: 299, status: "Coming Soon", isComingSoon: true, description: "Extra-long pads optimized for heavy daytime or active protection.", reviews: [] },
+  { id: "prod_overnight_10", name: "Comfi Ultra Thin - Overnight", size: "Overnight", length: "360mm", packCount: 10, price: 349, status: "Coming Soon", isComingSoon: true, description: "Specialized overnight pads with an extra-wide back to prevent leaks while sleeping.", reviews: [] }
 ];
 
 export default function Home() {
@@ -53,10 +53,15 @@ export default function Home() {
         <div className="w-[55%] flex flex-col justify-center pr-8 z-10 relative py-12">
           <div className="flex flex-col gap-6 max-w-xl">
             <ScrollReveal delay={100}>
-              <span className="text-[10px] font-bold tracking-[0.25em] text-[#7e0022] uppercase">
-                A NEW KIND OF CYCLE CARE
-              </span>
-              <h1 className="text-[4.8vw] font-serif font-black text-[#d0385c] leading-[1.0] tracking-tighter mt-2">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest bg-[#d0385c] text-white shadow-xs">
+                  <Sparkles size={11} /> Coming Soon
+                </span>
+                <span className="text-[10px] font-bold tracking-[0.25em] text-[#7e0022] uppercase">
+                  A NEW KIND OF CYCLE CARE
+                </span>
+              </div>
+              <h1 className="text-[4.8vw] font-serif font-black text-[#d0385c] leading-[1.0] tracking-tighter mt-1">
                 The Ultra-Thin Pad,<br />
                 Perfected.
               </h1>
@@ -111,10 +116,15 @@ export default function Home() {
         
         {/* Headline */}
         <ScrollReveal delay={100}>
-          <span className="text-[9px] font-bold tracking-[0.2em] text-[#7e0022] uppercase block mt-6">
-            A NEW KIND OF CYCLE CARE
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-serif font-black text-[#d0385c] leading-[1.0] tracking-tighter mt-2">
+          <div className="flex items-center gap-2 mb-2 mt-4">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest bg-[#d0385c] text-white shadow-xs">
+              <Sparkles size={11} /> Coming Soon
+            </span>
+            <span className="text-[9px] font-bold tracking-[0.2em] text-[#7e0022] uppercase">
+              A NEW KIND OF CYCLE CARE
+            </span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-serif font-black text-[#d0385c] leading-[1.0] tracking-tighter mt-1">
             The Ultra-Thin Pad,<br />
             Perfected.
           </h1>
@@ -211,8 +221,10 @@ export default function Home() {
       {/* Flavor Card Product Gallery */}
       <section className="py-12 px-6 md:px-12 max-w-7xl mx-auto">
         <ScrollReveal className="mb-16">
-          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#d0385c]/70">The Collection</span>
-          <h2 className="text-4xl sm:text-5xl font-serif font-black text-[#d0385c] tracking-tighter mt-2">
+          <div className="inline-flex items-center gap-2 bg-[#fae3e5] border border-[#d0385c]/20 px-3 py-1 rounded-full text-[10px] font-bold text-[#d0385c] uppercase tracking-widest mb-3">
+            <Sparkles size={12} /> The Collection • Coming Soon
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-serif font-black text-[#d0385c] tracking-tighter mt-1">
             Tailored Protection for Every Day
           </h2>
         </ScrollReveal>

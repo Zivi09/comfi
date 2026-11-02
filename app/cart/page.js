@@ -81,7 +81,7 @@ export default function Cart() {
   };
 
   return (
-    <div className="bg-[#fdf7e7] min-h-[85vh] py-12 px-6 md:px-12 max-w-5xl mx-auto select-none">
+    <div className="bg-[#fdf7e7] min-h-[85vh] py-8 sm:py-12 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto select-none">
       
       {/* Page Title */}
       <ScrollReveal className="mb-12 border-b border-[#d0385c]/10 pb-8">
@@ -166,7 +166,7 @@ export default function Cart() {
           </div>
 
           {/* Cart Summary - Right */}
-          <div className="bg-[#fae3e5] rounded-3xl p-8 border border-[#d0385c]/15 shadow-2xs flex flex-col gap-5">
+          <div className="bg-[#fae3e5] rounded-3xl p-5 sm:p-8 border border-[#d0385c]/15 shadow-2xs flex flex-col gap-5">
             <h3 className="text-[10px] font-bold tracking-[0.25em] text-[#d0385c]/70 uppercase">Order Summary</h3>
             
             {/* Subtotal */}

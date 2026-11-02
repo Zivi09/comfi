@@ -8,6 +8,8 @@
       "packCount": 10,
       "price": 199,
       "stock": 120,
+      "status": "Coming Soon",
+      "isComingSoon": true,
       "description": "Ultra-thin regular pads with wide wings designed for active daytime comfort. Features an irritation-free cotton feel, quick absorption lock layer, and leak-proof barriers.",
       "features": [
         "Breathable top layer for zero irritation",
@@ -38,6 +40,8 @@
       "packCount": 10,
       "price": 249,
       "stock": 85,
+      "status": "Coming Soon",
+      "isComingSoon": true,
       "description": "Premium large ultra-thin pads offering high absorbency for medium to heavy flow days. Skin-friendly, extra flexible, and features advanced rash-protection technology.",
       "features": [
         "Ultra-absorbent gel core",
@@ -62,6 +66,8 @@
       "packCount": 10,
       "price": 299,
       "stock": 60,
+      "status": "Coming Soon",
+      "isComingSoon": true,
       "description": "Extra-long pads optimized for heavy daytime or active protection. Maximized surface coverage with zero bulkiness, enabling free movement without leakage fears.",
       "features": [
         "320mm extra protection coverage",
@@ -86,6 +92,8 @@
       "packCount": 10,
       "price": 349,
       "stock": 45,
+      "status": "Coming Soon",
+      "isComingSoon": true,
       "description": "Specialized overnight pads with an extra-wide back to prevent leaks while sleeping. Delivers up to 12-hour protection, remaining completely breathable.",
       "features": [
         "360mm night safety length",
@@ -101,30 +109,6 @@
           "date": "2026-06-19"
         }
       ]
-    },
-    {
-      "id": "prod_hcptf8ax2",
-      "reviews": [],
-      "features": [],
-      "name": "Comfi Ultra - Next Test Size",
-      "size": "Large",
-      "length": "280mm",
-      "packCount": 10,
-      "price": 219,
-      "stock": 50,
-      "description": ""
-    },
-    {
-      "id": "prod_wnop10e5a",
-      "reviews": [],
-      "features": [],
-      "name": "Comfi Ultra - Next Test Size",
-      "size": "Large",
-      "length": "280mm",
-      "packCount": 10,
-      "price": 219,
-      "stock": 50,
-      "description": ""
     }
   ],
   "users": [

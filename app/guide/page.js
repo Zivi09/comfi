@@ -6,24 +6,24 @@ import { Leaf, Clock, Trash2, CalendarRange } from 'lucide-react';
 
 export default function PadGuide() {
   return (
-    <div className="bg-background-primary min-h-screen py-12 px-6 md:px-12 max-w-7xl mx-auto">
+    <div className="bg-background-primary min-h-screen py-8 sm:py-12 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto select-none">
       
       {/* Editorial Header */}
-      <ScrollReveal className="mb-16 border-b border-primaryText/5 pb-8">
+      <ScrollReveal className="mb-12 sm:mb-16 border-b border-primaryText/5 pb-6 sm:pb-8">
         <span className="utility-label text-accent font-black tracking-widest block mb-2">Education & Trust</span>
-        <h1 className="text-5xl md:text-6xl font-black heading-premium text-primaryText">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-black heading-premium text-primaryText">
           THE COMFI PAD GUIDE
         </h1>
-        <p className="text-sm text-primaryText/60 max-w-xl mt-4 leading-relaxed font-light">
+        <p className="text-xs sm:text-sm text-primaryText/60 max-w-xl mt-3 sm:mt-4 leading-relaxed font-light">
           A premium guide to understanding your flow cycle, choosing appropriate padding sizes, maintaining optimal hygiene, and disposal practices.
         </p>
       </ScrollReveal>
 
       {/* Grid of educational topics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-20">
         
         {/* Topic 1: How to Pick a Size */}
-        <ScrollReveal className="bg-background-secondary p-8 rounded-2xl border border-primaryText/5 flex flex-col justify-between">
+        <ScrollReveal className="bg-background-secondary p-5 sm:p-8 rounded-2xl border border-primaryText/5 flex flex-col justify-between">
           <div>
             <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent mb-6">
               <CalendarRange size={24} />

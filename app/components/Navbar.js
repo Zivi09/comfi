@@ -99,7 +99,7 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex flex-col pointer-events-none">
-      <div className="pt-4 pointer-events-auto w-full px-4 md:px-8">
+      <div className="pt-2 sm:pt-4 pointer-events-auto w-full px-2 sm:px-4 md:px-8">
         <PillNav 
           logo="COMFI"
           items={navItems}
