@@ -54,8 +54,8 @@ export default function Home() {
           <div className="flex flex-col gap-6 max-w-xl">
             <ScrollReveal delay={100}>
               <div className="flex items-center gap-2 mb-2">
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest bg-[#d0385c] text-white shadow-xs">
-                  <Sparkles size={11} /> Coming Soon
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest bg-[#febac4] text-[#7e0022] shadow-xs border border-[#7e0022]/20">
+                  <Sparkles size={11} className="text-[#7e0022]" /> Coming Soon
                 </span>
                 <span className="text-[10px] font-bold tracking-[0.25em] text-[#7e0022] uppercase">
                   A NEW KIND OF CYCLE CARE
@@ -117,8 +117,8 @@ export default function Home() {
         {/* Headline */}
         <ScrollReveal delay={100}>
           <div className="flex items-center gap-2 mb-2 mt-4">
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest bg-[#d0385c] text-white shadow-xs">
-              <Sparkles size={11} /> Coming Soon
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest bg-[#febac4] text-[#7e0022] shadow-xs border border-[#7e0022]/20">
+              <Sparkles size={11} className="text-[#7e0022]" /> Coming Soon
             </span>
             <span className="text-[9px] font-bold tracking-[0.2em] text-[#7e0022] uppercase">
               A NEW KIND OF CYCLE CARE
@@ -221,8 +221,8 @@ export default function Home() {
       {/* Flavor Card Product Gallery */}
       <section className="py-12 px-6 md:px-12 max-w-7xl mx-auto">
         <ScrollReveal className="mb-16">
-          <div className="inline-flex items-center gap-2 bg-[#fae3e5] border border-[#d0385c]/20 px-3 py-1 rounded-full text-[10px] font-bold text-[#d0385c] uppercase tracking-widest mb-3">
-            <Sparkles size={12} /> The Collection • Coming Soon
+          <div className="inline-flex items-center gap-2 bg-[#febac4] border border-[#7e0022]/20 px-3 py-1 rounded-full text-[10px] font-bold text-[#7e0022] uppercase tracking-widest mb-3 shadow-xs">
+            <Sparkles size={12} className="text-[#7e0022]" /> The Collection • Coming Soon
           </div>
           <h2 className="text-4xl sm:text-5xl font-serif font-black text-[#d0385c] tracking-tighter mt-1">
             Tailored Protection for Every Day

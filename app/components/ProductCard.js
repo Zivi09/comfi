@@ -8,7 +8,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight, Star, Sparkles } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import HeartToggle from './HeartToggle';
 
@@ -156,11 +156,11 @@ export default function ProductCard({ product }) {
         className="absolute top-4 left-4 sm:top-5 sm:left-5 z-30 pointer-events-auto" 
       />
       
-      {/* Coming Soon Pill Badge */}
+      {/* Light Pink Coming Soon Banner */}
       <div className="absolute top-4 right-4 sm:top-5 sm:right-5 z-20 pointer-events-none">
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-wider bg-[#d0385c] text-white shadow-xs border border-white/30 backdrop-blur-xs">
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          Coming Soon
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-[#febac4] text-[#7e0022] shadow-xs border border-[#7e0022]/20 backdrop-blur-xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#7e0022] animate-pulse" />
+          COMING SOON
         </span>
       </div>
       
@@ -206,7 +206,7 @@ export default function ProductCard({ product }) {
                 Launching Soon
               </span>
             </div>
-            <span className="flex items-center gap-1 text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-[#d0385c] bg-white px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full group-hover:bg-[#d0385c] group-hover:text-white transition-all duration-300 shadow-2xs">
+            <span className="flex items-center gap-1 text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-[#d0385c] bg-white px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full group-hover:bg-[#febac4] group-hover:text-[#7e0022] transition-all duration-300 shadow-2xs border border-[#d0385c]/10">
               Coming Soon <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform duration-300" />
             </span>
           </div>

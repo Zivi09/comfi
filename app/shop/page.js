@@ -71,8 +71,8 @@ export default function Shop() {
       
       {/* Editorial Title */}
       <ScrollReveal className="mb-10 sm:mb-12 border-b border-[#d0385c]/10 pb-6 sm:pb-8">
-        <div className="inline-flex items-center gap-2 bg-[#fae3e5] border border-[#d0385c]/20 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#d0385c] mb-3">
-          <Sparkles size={14} className="text-[#d0385c]" />
+        <div className="inline-flex items-center gap-2 bg-[#febac4] border border-[#7e0022]/20 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#7e0022] mb-3 shadow-xs">
+          <Sparkles size={14} className="text-[#7e0022]" />
           <span>PREMIER COLLECTION • ALL PRODUCTS COMING SOON</span>
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-[#d0385c] uppercase tracking-tighter">

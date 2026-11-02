@@ -292,8 +292,8 @@ export default function ProductDetail({ params }) {
         <div className="relative">
           {/* Coming Soon Corner Badge */}
           <div className="absolute top-4 left-4 z-20">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-widest bg-[#d0385c] text-white shadow-md border border-white/30 backdrop-blur-xs">
-              <Sparkles size={13} /> COMING SOON
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-widest bg-[#febac4] text-[#7e0022] shadow-sm border border-[#7e0022]/20 backdrop-blur-xs">
+              <Sparkles size={13} className="text-[#7e0022]" /> COMING SOON
             </span>
           </div>
 
@@ -310,8 +310,8 @@ export default function ProductDetail({ params }) {
           <ScrollReveal>
             <div className="flex flex-wrap items-center justify-between gap-3 mb-4 border-b border-primaryText/5 pb-4">
               <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-[#d0385c] text-white shadow-xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-[#febac4] text-[#7e0022] shadow-xs border border-[#7e0022]/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#7e0022] animate-pulse" />
                   COMING SOON
                 </span>
                 <span className="utility-label text-accent font-black tracking-widest hidden sm:inline">

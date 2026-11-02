@@ -120,8 +120,8 @@ export default function BuildYourOwnPack({ products }) {
             BUILD YOUR OWN PACK
           </h3>
         </div>
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-[#d0385c] text-white shadow-xs">
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-[#febac4] text-[#7e0022] shadow-xs border border-[#7e0022]/20">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#7e0022] animate-pulse" />
           Coming Soon
         </span>
       </div>
