@@ -933,7 +933,7 @@ export default function Account() {
                           className="bg-[#d0385c] hover:bg-[#5c0018] text-white px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-xs transition-all cursor-pointer"
                         >
                           {isGeoLoading ? <RefreshCw size={13} className="animate-spin" /> : <Navigation size={13} />}
-                          <span>{isGeoLoading ? 'Detecting GPS...' : '📍 Auto-Locate via GPS'}</span>
+                          <span>{isGeoLoading ? 'Detecting GPS...' : 'Auto-Locate via GPS'}</span>
                         </button>
                       </div>
 
@@ -956,7 +956,7 @@ export default function Account() {
                       </div>
 
                       <div className="p-3 bg-white rounded-xl border border-[#d0385c]/15 text-xs text-[#7e0022] font-bold flex items-center justify-between">
-                        <span>📍 Locality: <strong className="text-[#d0385c]">{addressInput.locality}</strong></span>
+                        <span>Locality: <strong className="text-[#d0385c]">{addressInput.locality}</strong></span>
                         <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-mono font-bold">GPS Verified</span>
                       </div>
                     </div>
@@ -1326,12 +1326,12 @@ export default function Account() {
                   className="w-full bg-[#fdf7e7] border border-[#d0385c]/20 hover:bg-white text-[#7e0022] p-4 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-3 transition-all cursor-pointer"
                 >
                   <Camera size={18} className="text-[#d0385c]" />
-                  <span>📷 Use Camera to Take Photo</span>
+                  <span>Use Camera to Take Photo</span>
                 </button>
 
                 <label className="w-full bg-[#fdf7e7] border border-[#d0385c]/20 hover:bg-white text-[#7e0022] p-4 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-3 transition-all cursor-pointer block">
                   <Upload size={18} className="text-[#d0385c]" />
-                  <span>📁 Upload Image from Gallery</span>
+                  <span>Upload Image from Gallery</span>
                   <input type="file" accept="image/*" className="hidden" onChange={handleFileUpload} />
                 </label>
               </div>

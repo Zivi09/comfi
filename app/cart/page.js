@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useApp } from '../context/AppContext';
 import ScrollReveal from '../components/ScrollReveal';
-import { Trash2, Plus, Minus, ArrowRight, ShoppingCart } from 'lucide-react';
+import { Trash2, Plus, Minus, ArrowRight, ShoppingCart, Tag, Check } from 'lucide-react';
 
 export default function Cart() {
   const { 
@@ -181,7 +181,7 @@ export default function Cart() {
               {coupon ? (
                 <div className="bg-[#fdf7e7] p-3 rounded-2xl border border-emerald-500/30 flex items-center justify-between">
                   <div>
-                    <span className="text-xs font-black text-emerald-700 block">🎉 {coupon.code}</span>
+                    <span className="text-xs font-black text-emerald-700 flex items-center gap-1.5"><Tag size={12} className="text-emerald-700 shrink-0" /> {coupon.code}</span>
                     <span className="text-[10px] text-emerald-600 font-medium">{coupon.description}</span>
                   </div>
                   <button 
@@ -241,7 +241,7 @@ export default function Cart() {
               {gstinData ? (
                 <div className="bg-[#fdf7e7] p-3 rounded-2xl border border-emerald-500/30 flex items-start justify-between">
                   <div>
-                    <span className="text-xs font-black text-emerald-800 block">✓ {gstinData.gstin}</span>
+                    <span className="text-xs font-black text-emerald-800 flex items-center gap-1"><Check size={12} strokeWidth={3} /> {gstinData.gstin}</span>
                     <span className="text-[10px] text-emerald-700 block font-medium">{gstinData.tradeName || gstinData.legalName}</span>
                     <span className="text-[9px] text-emerald-600 font-bold uppercase">{gstinData.state} • {gstinData.status}</span>
                   </div>

@@ -48,7 +48,7 @@ export async function POST(req) {
       discountValue: coupon.value,
       discountAmount,
       description: coupon.description,
-      message: `🎉 Coupon '${cleanCode}' applied! Saved ₹${discountAmount}.`
+      message: `Coupon '${cleanCode}' applied! Saved ₹${discountAmount}.`
     });
 
   } catch (error) {

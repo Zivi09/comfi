@@ -99,7 +99,7 @@ export default function BuildYourOwnPack({ products }) {
     addToCart(bundleItem, 1, details);
     
     if (showToast) {
-      showToast(`Custom Flow Pack (${totalPads} Pads) added to your bag!`, "🎉 Custom Box Added!");
+      showToast(`Custom Flow Pack (${totalPads} Pads) added to your bag!`, "Custom Box Added");
     }
 
     setIsAddedToCart(true);
@@ -216,7 +216,9 @@ export default function BuildYourOwnPack({ products }) {
             {totalPads < 10 ? (
               <span className="text-[#7e0022] uppercase tracking-wider">Add {10 - totalPads} more pads!</span>
             ) : (
-              <span className="text-[#d0385c] uppercase tracking-wider">✓ Pack Ready ({totalPads} pads)</span>
+              <span className="inline-flex items-center gap-1 text-[#d0385c] uppercase tracking-wider font-extrabold">
+                <Check size={13} strokeWidth={3} /> Pack Ready ({totalPads} pads)
+              </span>
             )}
           </div>
         </div>
