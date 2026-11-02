@@ -85,6 +85,22 @@
   50% { transform: translateY(-20px); }
 }
 
+@keyframes marqueeRunner {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-marquee-runner {
+  display: flex;
+  width: max-content;
+  animation: marqueeRunner 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-runner:hover {
+  animation-play-state: paused;
+}
+
 @layer base {
   body {
     background-color: var(--bg-primary);
