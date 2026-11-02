@@ -159,6 +159,20 @@
       "avatarUrl": null,
       "isTwoFactorEnabled": false,
       "twoFactorSecret": null
+    },
+    {
+      "id": "user_t8xhx489k",
+      "role": "customer",
+      "name": "Test Create",
+      "email": "test_create_1793647362605@gmail.com"
+    },
+    {
+      "id": "user_pbxbhjc3q",
+      "role": "customer",
+      "createdAt": "2026-11-02T19:34:56.155Z",
+      "name": "Jane Doe",
+      "email": "customer_test_1793648096135@gmail.com",
+      "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
     }
   ],
   "orders": [],

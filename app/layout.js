@@ -3,6 +3,7 @@ import "./globals.css";
 import { AppProvider } from "./context/AppContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import MainLayout from "./components/MainLayout";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,9 +20,14 @@ const playfair = Playfair_Display({
 export const metadata = {
   title: "Comfi | Premium Ultra Thin Sanitary Pads",
   description: "Gynecologist-approved, organic cotton sanitary pads engineered without bulkiness. Zero leaks. Zero irritation. Ultra-thin daytime and sleep protection.",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
-
-import MainLayout from "./components/MainLayout";
 
 export default function RootLayout({ children }) {
   return (

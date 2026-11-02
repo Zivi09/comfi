@@ -45,36 +45,77 @@ export default function Account() {
   const [redirectPath, setRedirectPath] = useState(null);
   
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const searchParams = new URLSearchParams(window.location.search);
-      const redirect = searchParams.get('redirect');
-      if (redirect) {
-        setRedirectPath(redirect);
-      }
+    if (typeof window === 'undefined') return;
 
-      // Parse OAuth errors from query or hash
-      const hasErrorInQuery = searchParams.get('error') || searchParams.get('error_description');
-      const hasErrorInHash = window.location.hash.includes('error=');
-      if (hasErrorInQuery || hasErrorInHash) {
-        setAuthError('Google login session expired or failed code exchange. Please click "Continue with Google" again.');
-        // Clean up messy OAuth error parameters from address bar
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
+    const searchParams = new URLSearchParams(window.location.search);
+    const redirect = searchParams.get('redirect');
+    if (redirect) {
+      setRedirectPath(redirect);
     }
-  }, []);
 
-  // Handle Google OAuth via Supabase
+    // 1. Check for OAuth errors in query or hash
+    let oauthError = searchParams.get('error_description') || searchParams.get('error');
+    if (!oauthError && window.location.hash.includes('error=')) {
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      oauthError = hashParams.get('error_description') || hashParams.get('error');
+    }
+
+    if (oauthError) {
+      const cleanError = decodeURIComponent(oauthError.replace(/\+/g, ' '));
+      setAuthError(`Google Sign-In: ${cleanError}`);
+      window.history.replaceState({}, document.title, window.location.pathname);
+      return;
+    }
+
+    // 2. Handle PKCE code exchange if ?code= is present
+    const code = searchParams.get('code');
+    if (code && supabase) {
+      setAuthLoading(true);
+      supabase.auth.exchangeCodeForSession(code).then(async ({ data, error }) => {
+        if (error) {
+          console.error("Code exchange error:", error);
+          setAuthError(error.message || 'Failed to exchange Google auth code.');
+        } else if (data?.session?.user) {
+          const gUser = data.session.user;
+          const ADMIN_EMAILS = ['comfi7555@gmail.com', 'carolpillai02@gmail.com', 'pillaicarolcs242549@gmail.com', 'admin@comfi.com'];
+          const isAdminUser = gUser.email && ADMIN_EMAILS.includes(gUser.email.toLowerCase());
+          const formattedUser = {
+            id: gUser.id,
+            name: gUser.user_metadata?.full_name || gUser.user_metadata?.name || gUser.email?.split('@')[0] || 'Comfi User',
+            email: gUser.email,
+            role: isAdminUser ? 'admin' : 'customer',
+            avatarUrl: gUser.user_metadata?.avatar_url || ''
+          };
+          login(formattedUser, data.session.access_token);
+          if (redirect) {
+            router.push(redirect);
+          } else if (formattedUser.role === 'admin') {
+            router.push('/admin/dashboard');
+          }
+        }
+      }).catch((err) => {
+        setAuthError(err.message || 'Google authentication error.');
+      }).finally(() => {
+        setAuthLoading(false);
+        window.history.replaceState({}, document.title, window.location.pathname);
+      });
+    }
+  }, [login, router]);
+
+  // Handle Google OAuth via Supabase state change
   useEffect(() => {
     if (!supabase) return;
 
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (session?.user) {
+      if (session?.user && !token) {
         const gUser = session.user;
+        const ADMIN_EMAILS = ['comfi7555@gmail.com', 'carolpillai02@gmail.com', 'pillaicarolcs242549@gmail.com', 'admin@comfi.com'];
+        const isAdminUser = gUser.email && ADMIN_EMAILS.includes(gUser.email.toLowerCase());
         const formattedUser = {
           id: gUser.id,
           name: gUser.user_metadata?.full_name || gUser.user_metadata?.name || gUser.email?.split('@')[0] || 'Comfi User',
           email: gUser.email,
-          role: (gUser.email === 'comfi7555@gmail.com' || gUser.email === 'carolpillai02@gmail.com') ? 'admin' : 'customer',
+          role: isAdminUser ? 'admin' : 'customer',
           avatarUrl: gUser.user_metadata?.avatar_url || ''
         };
 
@@ -91,7 +132,7 @@ export default function Account() {
     return () => {
       authListener?.subscription?.unsubscribe();
     };
-  }, [login, redirectPath, router]);
+  }, [login, redirectPath, router, token]);
 
   const handleGoogleLogin = async () => {
     setAuthError('');
@@ -285,28 +326,10 @@ export default function Account() {
           }
         }
       } else {
-        const fallbackUser = {
-          id: 'usr_comfi_01',
-          name: formData.email.split('@')[0],
-          email: formData.email,
-          role: (formData.email.includes('comfi7555') || formData.email.includes('carol')) ? 'admin' : 'customer'
-        };
-        login(data.user || fallbackUser, data.token || 'comfi_jwt_token_demo');
-        if (redirectPath) {
-          router.push(redirectPath);
-        }
+        setAuthError(data.message || (isLogin ? 'Invalid email or password.' : 'Failed to create account.'));
       }
     } catch (err) {
-      const fallbackUser = {
-        id: 'usr_comfi_01',
-        name: formData.email ? formData.email.split('@')[0] : 'Comfi User',
-        email: formData.email || 'comfi7555@gmail.com',
-        role: (formData.email?.includes('comfi7555') || formData.email?.includes('carol')) ? 'admin' : 'customer'
-      };
-      login(fallbackUser, 'comfi_jwt_token_demo');
-      if (redirectPath) {
-        router.push(redirectPath);
-      }
+      setAuthError(err.message || 'Network error. Please try again.');
     } finally {
       setAuthLoading(false);
     }
