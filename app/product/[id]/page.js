@@ -124,7 +124,7 @@ export default function ProductDetail({ params }) {
     if (user?.email) {
       setIsWaitlistJoined(true);
       if (showToast) {
-        showToast(`You're on the VIP launch list! We'll email ${user.email} on launch day.`, "🚀 VIP Access Confirmed");
+        showToast(`You're on the VIP launch list! We'll email ${user.email} on launch day.`, "VIP Access Confirmed");
       } else {
         alert(`You're on the VIP launch list! We'll email ${user.email} on launch day.`);
       }
@@ -140,7 +140,7 @@ export default function ProductDetail({ params }) {
     }
     setIsWaitlistJoined(true);
     if (showToast) {
-      showToast(`You're on the VIP launch list! We'll email ${waitlistEmail} on launch day.`, "🚀 VIP Access Confirmed");
+      showToast(`You're on the VIP launch list! We'll email ${waitlistEmail} on launch day.`, "VIP Access Confirmed");
     } else {
       alert(`You're on the VIP launch list! We'll email ${waitlistEmail} on launch day.`);
     }
@@ -224,7 +224,7 @@ export default function ProductDetail({ params }) {
     addToCart(finalProduct, 1);
     
     if (showToast) {
-      showToast(`${finalProduct.name} added to your bag!`, "🎉 Added to Bag!");
+      showToast(`${finalProduct.name} added to your bag!`, "Added to Bag");
     }
 
     setIsAddedToCart(true);
@@ -423,9 +423,15 @@ export default function ProductDetail({ params }) {
                 {/* Pre-order Option for Testing & Advance Purchase */}
                 <button
                   onClick={handleAddToCart}
-                  className="text-center text-[11px] font-bold text-[#d0385c]/80 hover:text-[#d0385c] underline py-1 transition-colors cursor-pointer"
+                  className="text-center text-[11px] font-bold text-[#d0385c]/80 hover:text-[#d0385c] underline py-1 transition-colors cursor-pointer flex items-center justify-center gap-1"
                 >
-                  {isAddedToCart ? "✓ Pre-order Bag Updated → View Cart" : "Or Pre-order (Add to Bag) →"}
+                  {isAddedToCart ? (
+                    <>
+                      <Check size={13} className="text-[#d0385c]" /> Pre-order Bag Updated → View Cart
+                    </>
+                  ) : (
+                    "Or Pre-order (Add to Bag) →"
+                  )}
                 </button>
               </div>
             </div>

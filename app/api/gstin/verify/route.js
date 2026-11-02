@@ -86,7 +86,7 @@ export async function POST(req) {
       taxpayerType: "Regular",
       businessType: businessType,
       pan: panNumber,
-      message: `✓ GSTIN Verified Active (${stateName})`
+      message: `GSTIN Verified Active (${stateName})`
     });
 
   } catch (error) {

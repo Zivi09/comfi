@@ -78,7 +78,7 @@ export async function POST(request) {
     // 7. Dispatch Welcome Email asynchronously
     sendEmail({
       to: user.email,
-      subject: `Hey ${user.name}, you logged in! Happy shopping ⚡`,
+      subject: `Hey ${user.name}, you logged in! Happy shopping.`,
       html: welcomeHtml
     }).catch(err => console.error('Failed to dispatch welcome email in background:', err));
 

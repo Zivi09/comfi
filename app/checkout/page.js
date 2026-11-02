@@ -15,7 +15,7 @@ import { useApp } from '../context/AppContext';
 import ScrollReveal from '../components/ScrollReveal';
 import { 
   CreditCard, CheckCircle, XCircle, ArrowLeft, Loader2, Tag, 
-  Building2, ShieldCheck, Truck, Sparkles, Check, RefreshCw
+  Building2, ShieldCheck, Truck, Sparkles, Check, RefreshCw, FlaskConical
 } from 'lucide-react';
 
 export default function Checkout() {
@@ -115,7 +115,7 @@ export default function Checkout() {
     try {
       const res = await verifyAndApplyGSTIN(gstinInput.trim().toUpperCase());
       if (res.success) {
-        setGstinMsg({ type: 'success', text: `✓ Verified: ${res.data.tradeName || res.data.legalName}` });
+        setGstinMsg({ type: 'success', text: `Verified: ${res.data.tradeName || res.data.legalName}` });
         setGstinInput('');
       } else {
         setGstinMsg({ type: 'error', text: res.message });
@@ -280,7 +280,7 @@ export default function Checkout() {
       const data = await res.json();
       if (data.success) {
         clearCart();
-        alert("🎉 Dummy Payment approved! Your order has been placed successfully.");
+        alert("Payment approved! Your order has been placed successfully.");
         router.push('/account');
       } else {
         setError("Dummy Payment was cancelled or declined.");
@@ -415,7 +415,7 @@ export default function Checkout() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-xs text-[#d0385c] flex items-center gap-1.5">
-                    🧪 Dummy Test Gateway
+                    <FlaskConical size={14} className="text-[#d0385c]" /> Test Payment Gateway
                   </span>
                   {paymentMode === 'dummy' && <CheckCircle size={16} className="text-[#d0385c]" />}
                 </div>
@@ -433,7 +433,7 @@ export default function Checkout() {
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-xs text-[#7e0022] flex items-center gap-1.5">
-                    💳 Razorpay Live / UPI
+                    <CreditCard size={14} className="text-[#7e0022]" /> Razorpay Live & UPI
                   </span>
                   {paymentMode === 'razorpay' && <CheckCircle size={16} className="text-[#d0385c]" />}
                 </div>
@@ -474,8 +474,9 @@ export default function Checkout() {
             {coupon ? (
               <div className="bg-[#fdf7e7] p-3 rounded-2xl border border-emerald-500/30 flex items-center justify-between">
                 <div>
-                  <div className="font-bold text-xs text-emerald-800 flex items-center gap-1">
-                    🎉 Coupon Applied: {coupon.code}
+                  <div className="font-bold text-xs text-emerald-800 flex items-center gap-1.5">
+                    <Tag size={13} className="text-emerald-700 shrink-0" />
+                    <span>Coupon Applied: {coupon.code}</span>
                   </div>
                   <div className="text-[10px] text-emerald-700">You saved ₹{discount}!</div>
                 </div>
@@ -540,14 +541,17 @@ export default function Checkout() {
                 className="text-xs font-bold text-[#7e0022] uppercase tracking-wider flex items-center gap-1.5 hover:text-[#d0385c] transition-colors cursor-pointer"
               >
                 <Building2 size={14} className="text-[#d0385c]" />
-                <span>🏢 Add GSTIN for Tax Invoice ({gstinData ? 'Added' : 'Optional'})</span>
+                <span>Add GSTIN for Tax Invoice ({gstinData ? 'Added' : 'Optional'})</span>
               </button>
             </div>
 
             {gstinData ? (
               <div className="bg-[#fdf7e7] p-3 rounded-2xl border border-emerald-500/30 flex items-center justify-between">
                 <div>
-                  <div className="font-bold text-xs text-emerald-800">✓ B2B GSTIN: {gstinData.gstin}</div>
+                  <div className="font-bold text-xs text-emerald-800 flex items-center gap-1.5">
+                    <Check size={12} strokeWidth={3} className="text-emerald-700 shrink-0" />
+                    <span>B2B GSTIN: {gstinData.gstin}</span>
+                  </div>
                   <div className="text-[10px] text-emerald-700">{gstinData.tradeName || gstinData.legalName}</div>
                 </div>
                 <button type="button" onClick={removeGSTIN} className="text-xs font-bold text-red-600 hover:underline px-2">
@@ -642,8 +646,8 @@ export default function Checkout() {
       {showMockModal && mockOrderDetails && (
         <div className="fixed inset-0 bg-[#d0385c]/65 backdrop-blur-[4px] z-[99999] flex items-center justify-center p-4 font-sans">
           <ScrollReveal className="bg-[#fdf7e7] max-w-md w-full rounded-3xl border border-[#d0385c]/30 p-6 md:p-8 text-center shadow-2xl space-y-5">
-            <span className="text-[10px] font-bold tracking-widest bg-[#d0385c]/15 text-[#d0385c] px-3.5 py-1 rounded-full uppercase inline-block font-sans">
-              🧪 Dummy Payment Gateway Simulator
+            <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest bg-[#d0385c]/15 text-[#d0385c] px-3.5 py-1 rounded-full uppercase font-sans">
+              <FlaskConical size={12} /> Test Payment Gateway Simulator
             </span>
             
             <h2 className="text-2xl font-serif font-black text-[#d0385c] uppercase tracking-tighter">

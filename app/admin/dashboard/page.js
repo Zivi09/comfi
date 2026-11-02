@@ -9,7 +9,7 @@ import {
   ShieldCheck, Search, Plus, Edit2, Trash2, Download, RefreshCw, 
   LogOut, CheckCircle2, AlertTriangle, Eye, Printer, Send, Sparkles, 
   Filter, X, ArrowUpRight, ArrowDownRight, Key, Lock, FileSpreadsheet,
-  SlidersHorizontal, Check, Zap, AlertCircle
+  SlidersHorizontal, Check, Zap, AlertCircle, Flame, Rocket, Target, Star
 } from 'lucide-react';
 
 export default function AdminDashboard() {
@@ -603,7 +603,13 @@ export default function AdminDashboard() {
                           </span>
                         </td>
                         <td className="p-3">
-                          {p.featured ? <span className="text-amber-500 font-bold">★ Yes</span> : <span className="text-gray-400">No</span>}
+                          {p.featured ? (
+                            <span className="text-amber-600 font-bold flex items-center gap-1 text-xs">
+                              <Star size={12} className="fill-amber-500 text-amber-500" /> Yes
+                            </span>
+                          ) : (
+                            <span className="text-gray-400 text-xs">No</span>
+                          )}
                         </td>
                         <td className="p-3 text-right space-x-2">
                           <button 
@@ -1055,7 +1061,7 @@ export default function AdminDashboard() {
                       <div key={i} className="p-3 bg-gray-50 rounded-lg border border-gray-100 space-y-1.5 text-xs">
                         <div className="flex items-center justify-between font-bold text-gray-900">
                           <span className="flex items-center gap-1.5">
-                            {item.hot && <span className="text-amber-500 text-[10px]">🔥 HOT</span>}
+                            {item.hot && <span className="inline-flex items-center gap-1 text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded text-[10px] font-bold"><Flame size={11} /> HOT</span>}
                             {item.feature}
                           </span>
                           <span className="text-[#7e0022] font-mono text-[11px]">{item.dwell}</span>
@@ -1224,7 +1230,7 @@ export default function AdminDashboard() {
                         onClick={() => handleMutation('addItem', 'coupons', { code: 'QUIZ50', discountType: 'Fixed ₹', value: 50, minOrderValue: 399, expiryDate: '2026-12-31', status: 'Active' })}
                         className="w-full bg-[#d0385c] hover:bg-[#b02b4a] text-white py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition-colors shadow-2xs"
                       >
-                        🚀 1-Click Launch Campaign & Create Coupon
+                        <Rocket size={13} /> 1-Click Launch Campaign & Create Coupon
                       </button>
                     </div>
                   </div>
@@ -1251,7 +1257,7 @@ export default function AdminDashboard() {
                         onClick={() => handleMutation('addItem', 'coupons', { code: 'NIGHTSAFE15', discountType: 'Percentage', value: 15, minOrderValue: 499, expiryDate: '2026-12-31', status: 'Active' })}
                         className="w-full bg-[#d0385c] hover:bg-[#b02b4a] text-white py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition-colors shadow-2xs"
                       >
-                        🚀 1-Click Launch Campaign & Create Coupon
+                        <Rocket size={13} /> 1-Click Launch Campaign & Create Coupon
                       </button>
                     </div>
                   </div>
@@ -1278,7 +1284,7 @@ export default function AdminDashboard() {
                         onClick={() => handleMutation('addItem', 'coupons', { code: 'FREESHIP499', discountType: 'Free Shipping', value: 49, minOrderValue: 499, expiryDate: '2026-12-31', status: 'Active' })}
                         className="w-full bg-[#d0385c] hover:bg-[#b02b4a] text-white py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition-colors shadow-2xs"
                       >
-                        🚀 1-Click Launch Campaign & Create Coupon
+                        <Rocket size={13} /> 1-Click Launch Campaign & Create Coupon
                       </button>
                     </div>
                   </div>
@@ -1303,7 +1309,7 @@ export default function AdminDashboard() {
                       if (!aiPrompt) return;
                       setAiLoading(true);
                       setTimeout(() => {
-                        setAiGeneratedText(`🎯 Recommended Campaign Strategy:
+                        setAiGeneratedText(`Recommended Campaign Strategy:
 
 • Campaign Name: "Comfi ${aiPrompt} Growth Blitz"
 • Suggested Coupon Code: "BOOST20"
@@ -1569,7 +1575,7 @@ export default function AdminDashboard() {
                   onClick={handleAutoGenerateProductDescription}
                   className="bg-[#febac4]/30 hover:bg-[#febac4]/60 text-[#7e0022] px-3 py-1 rounded-full text-[10px] font-extrabold flex items-center gap-1 border border-[#d0385c]/20 transition-all shadow-2xs"
                 >
-                  <Sparkles size={12} className="text-[#d0385c]" /> ✨ Auto-Generate Description (AI based on filled details)
+                  <Sparkles size={12} className="text-[#d0385c]" /> Auto-Generate Description (AI based on filled details)
                 </button>
               </div>
               <textarea 

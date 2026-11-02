@@ -9,7 +9,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useApp } from '../context/AppContext';
-import { ShoppingBag, Heart, User } from 'lucide-react';
+import { ShoppingBag, Heart, User, ShieldCheck } from 'lucide-react';
 import PillNav from './PillNav';
 import CampaignRunner from './CampaignRunner';
 
@@ -78,7 +78,7 @@ export default function Navbar() {
             </Link>
             {(user.role === 'admin' || user.email === 'comfi7555@gmail.com' || user.email === 'carolpillai02@gmail.com') && (
               <Link href="/admin/dashboard" className="px-4 py-2 text-xs font-bold uppercase tracking-widest text-amber-900 bg-amber-100 hover:bg-amber-200 rounded-xl transition-colors flex items-center gap-1.5 my-1">
-                👑 Admin Panel
+                <ShieldCheck size={14} className="text-amber-900 shrink-0" /> Admin Dashboard
               </Link>
             )}
             <button onClick={logout} className="px-4 py-2 text-xs font-bold uppercase tracking-widest text-red-600 hover:bg-red-50 rounded-xl transition-colors text-left w-full cursor-pointer">

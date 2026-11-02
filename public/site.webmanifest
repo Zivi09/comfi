@@ -1,0 +1,20 @@
+{
+  "name": "Comfi - Premium Ultra-Thin Sanitary Pads",
+  "short_name": "Comfi",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#7e0022",
+  "background_color": "#fdf7e7",
+  "display": "standalone",
+  "start_url": "/"
+}

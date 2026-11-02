@@ -18,15 +18,49 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-  title: "Comfi | Premium Ultra Thin Sanitary Pads",
-  description: "Gynecologist-approved, organic cotton sanitary pads engineered without bulkiness. Zero leaks. Zero irritation. Ultra-thin daytime and sleep protection.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://comfi.shop'),
+  title: {
+    default: "Comfi | Premium Ultra Thin Sanitary Pads",
+    template: "%s | Comfi"
+  },
+  description: "Gynecologist-approved, 100% organic cotton sanitary pads engineered without bulkiness. Zero leaks. Zero irritation. Ultra-thin daytime and sleep protection.",
+  keywords: ["sanitary pads", "organic cotton pads", "ultra-thin pads", "period care", "comfi", "rash-free pads"],
+  authors: [{ name: "Comfi Care" }],
+  creator: "Comfi",
+  publisher: "Comfi",
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "any" },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '32x32' }
     ],
-    apple: "/apple-icon.png",
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }
+    ],
+    shortcut: '/favicon.ico'
   },
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: 'https://comfi.shop',
+    siteName: 'Comfi',
+    title: 'Comfi | Premium Ultra Thin Sanitary Pads',
+    description: 'Gynecologist-approved, 100% organic cotton sanitary pads engineered without bulkiness. Zero leaks, zero irritation.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Comfi - Premium Ultra-Thin Organic Sanitary Pads',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Comfi | Premium Ultra Thin Sanitary Pads',
+    description: 'Gynecologist-approved, 100% organic cotton sanitary pads engineered without bulkiness. Zero leaks, zero irritation.',
+    images: ['/og-image.png'],
+  },
+  manifest: '/site.webmanifest',
 };
 
 export default function RootLayout({ children }) {
